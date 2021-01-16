@@ -42,7 +42,8 @@ io.on('connection', socket => {
 
 app.use('/', require('./src/routes'));
 
-server.listen('8081', () => {
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8081;
+server.listen(port, () => {
     console.log("Listening on port 8081");
     mongoDB.connect();
 });
